@@ -5,8 +5,9 @@
 			subscriptions.push collection.countSubscription() if collection.countSubscription
 			subscriptions
 		, []
+		console.log customSubscriptions
 		_.union [
-			Meteor.subscribe 'adminUsers'
+			#Meteor.subscribe 'adminUsers'
 			Meteor.subscribe 'adminUser'
 			Meteor.subscribe 'adminCollectionsCount'
 		], customSubscriptions

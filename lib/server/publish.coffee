@@ -34,7 +34,7 @@ Meteor.publish 'adminCollectionsCount', ->
 	_.each collectionsWithoutCustomCounter, (collection, name) ->
 		id = new Mongo.ObjectID
 		count = 1
-
+		console.log name
 		ready = false
 		handles.push adminCollectionObject(name).find().observeChanges
 			added: ->
@@ -48,9 +48,13 @@ Meteor.publish 'adminCollectionsCount', ->
 		self.added 'adminCollectionsCount', id, {collection: name, count: count}
 
 	_.each collectionsWithCountFn, (collection, name) ->
+		console.log name
 		id = new Mongo.ObjectID
 		count = collection.count()
 		self.added 'adminCollectionsCount', id, {collection: name, count: count}
+
+	id = new Mongo.ObjectID
+	self.added 'adminCollectionsCount', id, {collection: 'Users', count: Meteor.users.find().count()}
 
 	self.onStop ->
 		_.each handles, (handle) -> handle.stop()

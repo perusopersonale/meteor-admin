@@ -88,10 +88,10 @@ UI.registerHelper 'adminCollectionLabel', (collection)->
 	AdminDashboard.collectionLabel(collection) if collection?
 
 UI.registerHelper 'adminCollectionCount', (collection)->
-	if collection == 'Users'
-		Meteor.users.find().count()
-	else
-		AdminCollectionsCount.findOne({collection: collection})?.count
+	#if collection == 'Users'
+	#	Meteor.users.find().count()
+	#else
+	AdminCollectionsCount.findOne({collection: collection})?.count
 
 UI.registerHelper 'adminTemplate', (collection, mode)->
 	if collection?.toLowerCase() != 'users' && typeof AdminConfig?.collections?[collection]?.templates != 'undefined'
